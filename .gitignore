@@ -1,0 +1,36 @@
+# Node.js (backend)
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/*.log
+backend/npm-debug.log*
+
+# React Native with Expo (frontend)
+mobile-app/node_modules/
+mobile-app/.expo/
+mobile-app/.expo-shared/
+mobile-app/.env
+mobile-app/android/
+mobile-app/ios/
+mobile-app/web-build/
+mobile-app/dist/
+
+# Expo-specific
+mobile-app/packager-info.json
+mobile-app/metro-cache/
+mobile-app/.DS_Store
+
+# System/Editor files
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+
+# VSCode
+.vscode/
+
+# OS
+ehthumbs.db
+Icon?
+Desktop.ini
