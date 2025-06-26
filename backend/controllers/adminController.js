@@ -1,10 +1,12 @@
 import bcrypt from "bcrypt";
 import { createAdmin, findAdminByEmail } from "../models/adminModel.js";
+import { createGroup } from "../models/groupModel.js";
 import { generateToken } from "../utils/tokenUtils.js";
 import {
   registerSchema,
   loginSchema,
 } from "../utils/validators/adminSchema.js";
+import { groupSchema } from "../utils/validators/groupSchema.js";
 
 export async function register(req, res) {
   const { error, value } = registerSchema.validate(req.body);
