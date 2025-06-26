@@ -33,11 +33,12 @@ export async function login(req, res) {
   if (error) {
     return res.status(400).json({ error: error.details[0].message });
   }
+  console.log("VALIDATED");
 
   const { email, password } = value;
 
   try {
-    const admin = findAdminByEmail(email);
+    const admin = await findAdminByEmail(email);
     if (!admin) {
       return res.status(401).json({ error: "Invalid credentials." });
     }
@@ -45,6 +46,7 @@ export async function login(req, res) {
     if (!match) {
       return res.status(401).json({ error: "Invalid credentials." });
     }
+
     const token = generateToken({ adminId: admin.id, role: "admin" });
     res.status(200).json({ token });
   } catch (error) {
