@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import { createAdmin, findAdminByEmail } from "../models/adminModel.js";
-import { createGroup } from "../models/groupModel.js";
 import { generateToken } from "../utils/tokenUtils.js";
 import {
   registerSchema,
