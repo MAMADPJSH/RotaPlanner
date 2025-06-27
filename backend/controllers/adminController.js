@@ -21,7 +21,8 @@ export async function register(req, res) {
       return res.status(409).json({ error: "Email is already in use." });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const { adminId } = await createAdmin({ full_name, email, hashedPassword });
+    const adminId = await createAdmin({ full_name, email, hashedPassword });
+    console.log(adminId);
     const token = generateToken({ adminId, role: "admin" });
     res.status(201).json({ token: token });
   } catch (error) {

@@ -1,5 +1,6 @@
-import { roleSchema } from "../utils/validators/roleSchema";
-import { insertRole, findRolesByGroupId } from "../models/roleModel";
+import { roleSchema } from "../utils/validators/roleSchema.js";
+import { insertRole, findRolesByGroupId } from "../models/roleModel.js";
+import { ensureAdminHasGroup } from "../utils/adminUtils.js";
 
 export async function createRole(req, res) {
   const { error, value } = roleSchema.validate(req.body);
@@ -8,7 +9,8 @@ export async function createRole(req, res) {
   }
 
   const { name } = value;
-  const { groupId } = req.user;
+  const groupId = await ensureAdminHasGroup(req.user.adminId.id);
+  console.log(groupId);
 
   try {
     const newRole = await insertRole(name, groupId);

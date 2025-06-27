@@ -8,7 +8,7 @@ export async function createGroupHandler(req, res) {
   }
 
   const { group_name } = value;
-  const adminId = req.user.adminId;
+  const adminId = req.user.adminId.id;
 
   try {
     const groupId = await createGroup(group_name, adminId);
@@ -16,6 +16,6 @@ export async function createGroupHandler(req, res) {
       .status(201)
       .json({ groupId, message: "Group created and linked to admin." });
   } catch (error) {
-    res.status(500).json({ error: "Error creating group." });
+    res.status(500).json({ error: "Error creating group: " + error });
   }
 }
