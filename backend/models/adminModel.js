@@ -19,3 +19,9 @@ export async function findAdminGroupId(adminId) {
   const result = await pool.query(query, [adminId]);
   return result.rows[0]?.group_id;
 }
+
+export async function findAdminById(id) {
+  const query = "SELECT * FROM admins WHERE id = $1";
+  const result = await pool.query(query, [id]);
+  return result.rows[0];
+}

@@ -1,6 +1,6 @@
 import express from "express";
 import { createRole, getRoles } from "../controllers/roleController.js";
-import { verifyToken } from "../utils/auth.js";
+import { verifyToken } from "../utils/adminAuth.js";
 import { isAdmin } from "../utils/roleMiddleware.js";
 
 const router = express.Router();

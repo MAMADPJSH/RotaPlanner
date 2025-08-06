@@ -1,6 +1,6 @@
 import express from "express";
 import { createGroupHandler } from "../controllers/groupController.js";
-import { verifyToken } from "../utils/auth.js";
+import { verifyToken } from "../utils/adminAuth.js";
 
 const router = express.Router();
 

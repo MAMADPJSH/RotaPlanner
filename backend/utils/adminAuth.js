@@ -1,8 +1,9 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { findAdminById } from "../models/adminModel.js";
 dotenv.config();
 
-export function verifyToken(req, res, next) {
+export async function verifyToken(req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -14,8 +15,16 @@ export function verifyToken(req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
+
+    const admin = await findAdminById(decoded.adminId.id);
+
+    if (!admin) {
+      return res
+        .status(401)
+        .json({ error: "Token is invalid as account not found." });
+    }
     next();
   } catch (error) {
-    return res.status(401).json({ error: "Invalid or expired token." });
+    return res.status(401).json({ error: "Invalid or expired token. " });
   }
 }
